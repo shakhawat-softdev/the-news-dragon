@@ -5,15 +5,21 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
-import { authContext } from '../../../../../providers/AuthProvider';
+import { AuthContext } from '../../../../../providers/AuthProvider';
 import { useContext } from 'react';
 
 const NavigationBar = () => {
-    const { user } = useContext(authContext)
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch(error => console.error(error.massage))
+    }
 
     return (
         <Container>
-              <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
                 <Container>
 
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -26,10 +32,10 @@ const NavigationBar = () => {
 
                         </Nav>
                         <Nav>
-                           {user && <FaUserCircle style={{ fontSize: '2rem' }} />}
+                            {user && <FaUserCircle style={{ fontSize: '2rem' }} />}
 
-                          { user? <Button variant="secondary">Log Out</Button>: <Link to='/login'><Button variant="secondary">Login</Button></Link>}
-                         
+                            {user ? <Button variant="secondary" onClick={handleLogOut}>Log Out</Button> : <Link to='/login'><Button variant="secondary">Login</Button></Link>}
+
 
                         </Nav>
                     </Navbar.Collapse>

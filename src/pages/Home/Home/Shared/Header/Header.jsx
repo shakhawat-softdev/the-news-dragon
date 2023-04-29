@@ -8,14 +8,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import { authContext } from '../../../../../providers/AuthProvider';
+import { AuthContext } from '../../../../../providers/AuthProvider';
 import { FaUserCircle } from 'react-icons/fa';
 import NavigationBar from '../NavigationBar/NavigationBar';
 
 
 
 const Header = () => {
-    // const { user } = useContext(authContext)
+    const { user } = useContext(AuthContext)
 
     return (
         <div className='container mt-4'>
@@ -31,10 +31,10 @@ const Header = () => {
                     I can be a React component, multiple React components, or just some text.... Match Highlights: Germany vs Spain — as it happened   !   Match Highlights: Germany vs Spain as...
                 </Marquee>
             </div>
-            
+
             {/* <NavigationBar/> */}
 
-       
+
 
         </div>
     );
